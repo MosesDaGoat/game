@@ -5,18 +5,19 @@ from sys import exit
 
 class Game:
     def __init__(self):
-        self.movement = [False, False]
-        self.player = Player(self)
         
         pygame.init()
         
+        pygame.display.set_caption("flappy bird")
+       
         self.screen = pygame.display.set_mode((1200, 800))
         self.display = pygame.Surface((600, 400))
         
-        pygame.display.set_caption("flappy bird")
+        
         
         clock = pygame.time.Clock()
-
+        
+        self.movement = [False, False]
 
 def run_game(self):
     while True:
@@ -24,13 +25,8 @@ def run_game(self):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
-                    self.movement[0] = True
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_a:
-                    self.movement[0] = False
+         
 
-        self.screen.blit(pygame.transform.scale(self.display,self.screen.get_size())),
+        self.screen.blit(pygame.transform.scale(self.display,self.screen.get_size()),(0,0)),
         pygame.display.update()
         self.clock.tick(60)

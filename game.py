@@ -12,7 +12,7 @@ class Game:
         
         self.clock = pygame.time.Clock()
 
-        self.screen = pygame.display.set_mode((500, 800))
+        self.screen = pygame.display.set_mode((700, 900))
         self.display = pygame.Surface((643, 900))
                 
         clock = pygame.time.Clock()

@@ -1,11 +1,11 @@
 import os
+
 import pygame
 
-BASE_IMG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'images')
+BASE_IMG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/images/')
 
 def load_image(path):
-    full_path = os.path.join(BASE_IMG_PATH, path)
-    img = pygame.image.load(full_path).convert()
+    img = pygame.image.load(os.path.join(BASE_IMG_PATH, path)).convert()
     img.set_colorkey((0, 0, 0))
     return img
 

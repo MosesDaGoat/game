@@ -2,6 +2,8 @@ import pygame
 import sys
 from scripts.util import load_image, load_images
 from scripts.gameconfig import GameConfig
+from scripts.animation import Animation
+from scripts.bird import Bird
 
 class Game:
     SCREEN_SIZE = (700, 900)
@@ -26,11 +28,16 @@ class Game:
             "bird": load_images('birdsprites'),
             "pipe": load_images('pipes'),
             "gameover": load_image('gameover/gameover.png'),
-            "floor": load_image('floor/ground.png')
+            "floor": load_image('floor/ground.png'),
+            "bird/flap": Animation(load_images('birdsprites'), img_dur = 5)
         }
+
 
     def _setup_game_objects(self):
         self.config = GameConfig(self.DISPLAY_SIZE[0], self.DISPLAY_SIZE[1], self.assets['floor'])
+        bird_x = self.DISPLAY_SIZE[0] // 4
+        bird_y = self.DISPLAY_SIZE[1] // 2
+        self.bird = Bird(self.assets["bird/flap"].copy(), bird_x, bird_y)
 
     def run(self):
         while True:
@@ -43,12 +50,13 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self._quit()
-
     def _update(self):
         self.config.update_ground()
+        self.bird.update()
 
     def _draw(self):
         self.display.blit(self.assets['background'], (0, 0))
+        self.bird.draw(self.display)
         self.config.draw_ground(self.display)
 
     def _update_display(self):

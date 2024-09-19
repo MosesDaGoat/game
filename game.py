@@ -50,9 +50,21 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self._quit()
+    
     def _update(self):
         self.config.update_ground()
+        user_input = pygame.key.get_pressed()
+        self.config.update_ground()
+
+        if user_input[pygame.K_SPACE] and self.bird.rect.y > 0:
+            self.bird.vel = -7
+            self.bird.flap = True
+        else:
+            self.bird.flap = False
+
         self.bird.update()
+
+        
 
     def _draw(self):
         self.display.blit(self.assets['background'], (0, 0))
